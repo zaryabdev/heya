@@ -4,9 +4,9 @@ export default class Time extends EventEmitter {
     constructor() {
         super();
         this.start = Date.now();
+        this.delta = 16;
         this.current = this.start;
         this.elapsed = 0;
-        this.delta = 16;
 
         this.update();
     }
@@ -18,6 +18,8 @@ export default class Time extends EventEmitter {
         this.elapsed = this.current - this.start;
 
         this.emit("update");
+
+        // window.requestAnimationFrame(this.update.bind(this))
         window.requestAnimationFrame(() => this.update());
     }
 }
